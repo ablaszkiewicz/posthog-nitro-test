@@ -10,6 +10,6 @@
     "nitropack": "^2.12.4"
   },
   "dependencies": {
-    "posthog-node": "^5.8.8"
+    "posthog-node": "link:../../../../Library/pnpm/global/5/node_modules/posthog-node"
   }
 }

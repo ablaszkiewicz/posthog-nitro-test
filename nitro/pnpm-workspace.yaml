@@ -1,0 +1,2 @@
+overrides:
+  posthog-node: link:../../../../Library/pnpm/global/5/node_modules/posthog-node
