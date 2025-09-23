@@ -1,14 +1,20 @@
 import { NitroApp } from "nitropack";
 import { useRuntimeConfig } from "nitropack/runtime";
-import { PostHog } from "posthog-node";
+import { PostHog } from "posthog-node"; // Uncomment when enabling PostHog capture
 
-export function PosthogNitroAppPlugin(nitroApp: NitroApp): void {
-  nitroApp.hooks.hook("error", async (error) => {
-    const config = useRuntimeConfig();
+export interface PosthogPluginConfig {
+  apiKey?: string;
+}
 
-    const client = new PostHog(config.posthog.apiKey);
+export function PosthogNitroAppPlugin(config: PosthogPluginConfig = {}) {
+  return (nitroApp: NitroApp): void => {
+    nitroApp.hooks.hook("error", async (error) => {
+      const runtimeConfig = useRuntimeConfig();
+      const apiKey = config.apiKey || runtimeConfig.posthog?.apiKey;
 
-    console.log("config", config);
-    console.log(`Intercepted error from plugin`, error.message);
-  });
+      const client = new PostHog(apiKey);
+
+      console.log("Api key Is ", apiKey, "Capturing exception", error.message);
+    });
+  };
 }
