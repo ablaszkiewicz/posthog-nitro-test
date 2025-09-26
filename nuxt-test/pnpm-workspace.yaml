@@ -1,0 +1,2 @@
+overrides:
+  '@ablaszkiewicz/posthog-nuxt': link:../../../../Library/pnpm/global/5/node_modules/@ablaszkiewicz/posthog-nuxt

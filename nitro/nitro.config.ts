@@ -10,4 +10,9 @@ export default defineNitroConfig({
       apiKey: "CONFIG",
     },
   },
+  rollupConfig: {
+    output: {
+      sourcemapExcludeSources: false,
+    },
+  },
 });
